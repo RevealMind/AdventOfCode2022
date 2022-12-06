@@ -1,6 +1,6 @@
 import java.util.*
 
-fun init(): Pair<MutableList<Stack<String>>, String> {
+private fun init(): Pair<MutableList<Stack<String>>, String> {
     val list = mutableListOf<Stack<String>>()
     val (init, logic) = input("Day5").readText().split(lineSeparator(2))
     repeat(init.split(lineSeparator(1)).last().trim().last().digitToInt()) { list.add(Stack()) }
@@ -25,7 +25,7 @@ fun init(): Pair<MutableList<Stack<String>>, String> {
     return list to logic
 }
 
-fun part1() {
+private fun part1() {
     val (list, logic) = init()
 
     logic
@@ -48,7 +48,7 @@ fun part1() {
 }
 
 
-fun part2() {
+private fun part2() {
     val (list, logic) = init()
 
     logic
