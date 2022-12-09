@@ -60,8 +60,6 @@ private fun part2(data: List<List<Int>>) {
     println(list.flatten().maxOrNull())
 }
 
-typealias Grid<T> = List<List<T>>
-
 private fun <T: Comparable<T>> Grid<T>.goLeft(i: Int, j: Int): Int {
     var shift = j - 1
 
