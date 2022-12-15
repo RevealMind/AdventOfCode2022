@@ -1,24 +1,3 @@
-import kotlin.math.*
-
-private data class Point(val x: Int, val y: Int) {
-    operator fun plus(other: Point) = Point(x + other.x, y + other.y)
-}
-
-private fun Point.to(other: Point) = (min(x, other.x)..max(x, other.x)).flatMap { x ->
-    (min(y, other.y)..max(y, other.y)).map { y ->
-        Point(x, y)
-    }
-}
-
-private val Iterable<Point>.border
-    get() = run {
-        val minX = this.minOf { it.x }
-        val minY = this.minOf { it.y }
-        val maxX = this.maxOf { it.x }
-        val maxY = this.maxOf { it.y }
-        Point(minX, minY) to Point(maxX, maxY)
-    }
-
 private class Map(val rocks: Set<Point>, val start: Point) {
     val border = (rocks + start).border
     private var blocks = rocks.toMutableSet()
