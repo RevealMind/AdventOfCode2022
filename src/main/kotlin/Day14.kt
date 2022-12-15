@@ -21,13 +21,30 @@ private val Iterable<Point>.border
 
 private class Map(val rocks: Set<Point>, val start: Point) {
     val border = (rocks + start).border
+    private var blocks = rocks.toMutableSet()
+
+    fun draw() {
+        val (min, max) = (blocks + start).border
+        println("=".repeat(max.x - min.x + 1))
+        (min.y..max.y).map { y ->
+            (min.x..max.x).map { x ->
+                when (Point(x, y)) {
+                    in rocks -> "#"
+                    in blocks -> "o"
+                    start -> "+"
+                    else -> "."
+                }
+            }
+        }.also { println(it.joinToString("\n") { line -> line.joinToString("") }) }
+        println("=".repeat(max.x - min.x + 1))
+    }
 
     private fun Point.isInBorder() =
         x in border.first.x..border.second.x && y in border.first.y..border.second.y
 
     fun simulate1() {
         var curPosition = start
-        val blocks: MutableSet<Point> = rocks.toMutableSet()
+        blocks = rocks.toMutableSet()
         var cnt = 0
         while (true) {
             val down = curPosition + DOWN
@@ -49,6 +66,7 @@ private class Map(val rocks: Set<Point>, val start: Point) {
                 start
             }
         }
+        draw()
         println("Sands: $cnt")
     }
 
@@ -57,7 +75,7 @@ private class Map(val rocks: Set<Point>, val start: Point) {
 
     fun simulate2() {
         var curPosition = start
-        val blocks: MutableSet<Point> = rocks.toMutableSet()
+        blocks = rocks.toMutableSet()
         var cnt = 0
         while (true) {
             val down = curPosition + DOWN
@@ -76,6 +94,7 @@ private class Map(val rocks: Set<Point>, val start: Point) {
                 start
             }
         }
+        draw()
         println("Sands: $cnt")
     }
 
