@@ -1,11 +1,11 @@
 import kotlin.math.absoluteValue
 
-val template = "Sensor at x=(-?\\d+), y=(-?\\d+): closest beacon is at x=(-?\\d+), y=(-?\\d+)".toRegex()
 
 const val ROW = 2000000
 const val MAX_BORDER = 4000000
 
 fun main() {
+    val template = "Sensor at x=(-?\\d+), y=(-?\\d+): closest beacon is at x=(-?\\d+), y=(-?\\d+)".toRegex()
     val data = input("Day15").readLines().map { line ->
         val (x1, y1, x2, y2) = template.matchEntire(line)!!.destructured
         Triple(
